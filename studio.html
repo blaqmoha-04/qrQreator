@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6fa">
+    <meta
+      name="description"
+      content="Choose what to share, add your content, and shape a QR design in the Qreator Studio."
+    >
+    <title>QR Studio — Qreator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/studio.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/vendor/qrcode-generator.js" defer></script>
+    <script src="js/vendor/qrcode-generator-utf8.js" defer></script>
+    <script src="js/studio.js" defer></script>
+  </head>
+  <body class="studio-page">
+    <svg class="icon-library" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="icon-link" viewBox="0 0 24 24">
+        <path d="M10 13.5a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.7 1.7"/>
+        <path d="M14 10.5a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.7-1.7"/>
+      </symbol>
+      <symbol id="icon-card" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="3"/>
+        <circle cx="9" cy="10" r="2.2"/>
+        <path d="M5.5 17a3.5 3.5 0 0 1 7 0m3-7h3m-3 4h3"/>
+      </symbol>
+      <symbol id="icon-wifi" viewBox="0 0 24 24">
+        <path d="M3 9a14 14 0 0 1 18 0M6.5 12.5a8.8 8.8 0 0 1 11 0M10 16a3.2 3.2 0 0 1 4 0"/>
+        <circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>
+      </symbol>
+      <symbol id="icon-file" viewBox="0 0 24 24">
+        <path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10z"/>
+        <path d="M13 3v7h7M8 15h8m-8 3h8"/>
+      </symbol>
+      <symbol id="icon-share" viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="12" r="3"/>
+        <circle cx="18" cy="19" r="3"/>
+        <path d="m8.7 10.5 6.6-4m-6.6 7 6.6 4"/>
+      </symbol>
+      <symbol id="icon-image" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="3"/>
+        <circle cx="9" cy="10" r="1.5"/>
+        <path d="m4 17 5-5 4 4 3-3 4 4"/>
+      </symbol>
+      <symbol id="icon-video" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="3"/>
+        <path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/>
+      </symbol>
+      <symbol id="icon-text" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 11h16M4 16h10"/>
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="3"/>
+        <path d="m4 7 8 6 8-6"/>
+      </symbol>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <path d="M7 3h3l2 5-2.2 1.8a15 15 0 0 0 4.4 4.4L16 12l5 2v3c0 2-1.5 4-3.5 4A16.5 16.5 0 0 1 3 6.5C3 4.5 5 3 7 3z"/>
+      </symbol>
+      <symbol id="icon-message" viewBox="0 0 24 24">
+        <path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.5 8.5 0 0 1-4-.9L4 20l1-3.6a7.2 7.2 0 0 1-1-3.9A7.5 7.5 0 0 1 12 5a7.5 7.5 0 0 1 8 6.5z"/>
+        <path d="M8 12h.01M12 12h.01M16 12h.01"/>
+      </symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/>
+        <circle cx="12" cy="10" r="2.5"/>
+      </symbol>
+    </svg>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html#home" aria-label="Qreator home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="3" y="3" width="11" height="11" rx="2" fill="currentColor"/>
+              <rect x="18" y="3" width="11" height="11" rx="2" fill="currentColor"/>
+              <rect x="3" y="18" width="11" height="11" rx="2" fill="currentColor"/>
+              <path d="M19 19h4v4h-4zm6 0h4v4h-4zm-6 6h4v4h-4zm6 0h4v4h-4z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>qreator<span class="brand-period">.</span></span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="navigation" id="primary-navigation" aria-label="Main navigation">
+          <a class="nav-link" href="index.html#features">Features</a>
+          <a class="nav-link" href="index.html#how-it-works">How it works</a>
+          <a class="nav-link" href="index.html#about">About</a>
+          <a class="button button-small button-dark nav-cta" href="studio.html" aria-current="page">
+            The studio
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="studio-main">
+      <div class="container studio-container">
+        <div class="studio-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> QREATOR / STUDIO</p>
+            <h1>Create a <span>new design.</span></h1>
+            <p class="studio-intro">Choose what to share, add your details, then make the design your own.</p>
+          </div>
+          <button class="text-button reset-button" id="reset-studio" type="button">
+            Start over
+          </button>
+        </div>
+
+        <nav class="workflow-progress" aria-label="QR creation steps">
+          <ol>
+            <li>
+              <button class="progress-step is-active" type="button" data-step-jump="1" aria-current="step">
+                <span class="progress-number">01</span>
+                <span class="progress-label">Choose type</span>
+              </button>
+            </li>
+            <li>
+              <button class="progress-step" type="button" data-step-jump="2" disabled>
+                <span class="progress-number">02</span>
+                <span class="progress-label">Add content</span>
+              </button>
+            </li>
+            <li>
+              <button class="progress-step" type="button" data-step-jump="3" disabled>
+                <span class="progress-number">03</span>
+                <span class="progress-label">Design QR</span>
+              </button>
+            </li>
+          </ol>
+        </nav>
+        <p class="step-announcement" id="step-announcement" aria-live="polite">Step 1 of 3 — Choose a QR type.</p>
+
+        <section class="workflow-step" data-step="1" aria-labelledby="type-step-heading">
+          <div class="step-intro">
+            <div>
+              <span class="step-kicker">STEP 1</span>
+              <h2 id="type-step-heading" tabindex="-1">What would you like to share?</h2>
+              <p>Pick a starting point. You can add or edit the details in the next step.</p>
+            </div>
+            <span class="type-count">12 ways to connect</span>
+          </div>
+
+          <div class="type-grid" role="group" aria-label="Select a QR code type to open its content form">
+            <button class="type-card" type="button" data-qr-type="website" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-link"/></svg></span>
+              <span class="type-card-title">Website URL</span>
+              <span class="type-card-description">Send people to any web page.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="vcard" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-card"/></svg></span>
+              <span class="type-card-title">vCard</span>
+              <span class="type-card-description">Share a contact card in one scan.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="wifi" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-wifi"/></svg></span>
+              <span class="type-card-title">Wi-Fi</span>
+              <span class="type-card-description">Help guests join your network.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="pdf" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-file"/></svg></span>
+              <span class="type-card-title">PDF Link</span>
+              <span class="type-card-description">Open a publicly shared PDF.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="social" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-share"/></svg></span>
+              <span class="type-card-title">Social Media</span>
+              <span class="type-card-description">Connect to a social profile.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="image" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-image"/></svg></span>
+              <span class="type-card-title">Image Link</span>
+              <span class="type-card-description">Share an image hosted online.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="video" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-video"/></svg></span>
+              <span class="type-card-title">Video Link</span>
+              <span class="type-card-description">Link to a video people can watch.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="text" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-text"/></svg></span>
+              <span class="type-card-title">Plain Text</span>
+              <span class="type-card-description">Put a short message in the code.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="email" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-mail"/></svg></span>
+              <span class="type-card-title">Email</span>
+              <span class="type-card-description">Start an email with a tap.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="phone" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-phone"/></svg></span>
+              <span class="type-card-title">Phone</span>
+              <span class="type-card-description">Make it easy to call you.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="sms" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-message"/></svg></span>
+              <span class="type-card-title">SMS</span>
+              <span class="type-card-description">Open a ready-to-send message.</span>
+            </button>
+            <button class="type-card" type="button" data-qr-type="location" aria-pressed="false">
+              <span class="type-icon"><svg aria-hidden="true"><use href="#icon-pin"/></svg></span>
+              <span class="type-card-title">Location</span>
+              <span class="type-card-description">Point people to a place or address.</span>
+            </button>
+          </div>
+
+        </section>
+
+        <section class="workflow-step" data-step="2" aria-labelledby="content-step-heading" hidden>
+          <div class="step-intro">
+            <div>
+              <span class="step-kicker">STEP 2</span>
+              <h2 id="content-step-heading" tabindex="-1">Add the details.</h2>
+              <p>Tell us what people should see when they scan your code.</p>
+            </div>
+            <div class="selected-type-summary" id="selected-type-summary">
+              <span class="type-icon type-icon-small" id="selected-type-icon" aria-hidden="true"></span>
+              <span id="selected-type-label">Choose a type</span>
+            </div>
+          </div>
+
+          <div class="content-step-layout">
+            <form class="content-form" id="content-form" novalidate>
+              <div class="content-fields" data-content-panel="website" hidden>
+                <div class="form-section-heading">
+                  <h3>Your website</h3>
+                  <p>Paste the page you want people to visit.</p>
+                </div>
+                <div class="form-field">
+                  <label for="website-url">Website address</label>
+                  <input id="website-url" name="websiteUrl" type="url" placeholder="https://yourwebsite.com" autocomplete="url" required>
+                  <span class="field-hint">Use a full link beginning with https://.</span>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="vcard" hidden>
+                <div class="form-section-heading">
+                  <h3>Your contact card</h3>
+                  <p>Add the details you want someone to save.</p>
+                </div>
+                <div class="form-field form-field-split">
+                  <div class="form-field">
+                    <label for="vcard-first-name">First name</label>
+                    <input id="vcard-first-name" name="firstName" type="text" placeholder="Jordan" autocomplete="given-name" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="vcard-last-name">Last name</label>
+                    <input id="vcard-last-name" name="lastName" type="text" placeholder="Lee" autocomplete="family-name" required>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="vcard-email">Email <span class="optional-label">Optional</span></label>
+                  <input id="vcard-email" name="vcardEmail" type="email" placeholder="jordan@example.com" autocomplete="email">
+                </div>
+                <div class="form-field form-field-split">
+                  <div class="form-field">
+                    <label for="vcard-phone">Phone <span class="optional-label">Optional</span></label>
+                    <input id="vcard-phone" name="vcardPhone" type="tel" placeholder="+1 555 123 4567" autocomplete="tel">
+                  </div>
+                  <div class="form-field">
+                    <label for="vcard-organization">Organization <span class="optional-label">Optional</span></label>
+                    <input id="vcard-organization" name="organization" type="text" placeholder="Company or studio" autocomplete="organization">
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="vcard-website">Website <span class="optional-label">Optional</span></label>
+                  <input id="vcard-website" name="vcardWebsite" type="url" placeholder="https://yourwebsite.com" autocomplete="url">
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="wifi" hidden>
+                <div class="form-section-heading">
+                  <h3>Your Wi-Fi network</h3>
+                  <p>People nearby can join without typing your password.</p>
+                </div>
+                <div class="form-field">
+                  <label for="wifi-name">Network name</label>
+                  <input id="wifi-name" name="wifiName" type="text" placeholder="Your network name" autocomplete="off" required>
+                </div>
+                <div class="form-field">
+                  <label for="wifi-security">Security</label>
+                  <select id="wifi-security" name="wifiSecurity">
+                    <option value="WPA">WPA / WPA2</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">Open network</option>
+                  </select>
+                </div>
+                <div class="form-field" id="wifi-password-field">
+                  <label for="wifi-password">Network password</label>
+                  <input id="wifi-password" name="wifiPassword" type="password" placeholder="Enter your Wi-Fi password" autocomplete="new-password" required>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="pdf" hidden>
+                <div class="form-section-heading">
+                  <h3>Your PDF link</h3>
+                  <p>Link to a PDF already shared somewhere public.</p>
+                </div>
+                <div class="form-field">
+                  <label for="pdf-url">Public PDF URL</label>
+                  <input id="pdf-url" name="pdfUrl" type="url" placeholder="https://example.com/guide.pdf" required>
+                  <span class="field-hint">Qreator links to your file; it does not upload or host PDFs.</span>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="social" hidden>
+                <div class="form-section-heading">
+                  <h3>Your social profile</h3>
+                  <p>Choose a network and add a public profile link.</p>
+                </div>
+                <div class="form-field">
+                  <label for="social-platform">Social network</label>
+                  <select id="social-platform" name="socialPlatform" required>
+                    <option value="">Choose a network</option>
+                    <option>Instagram</option>
+                    <option>Facebook</option>
+                    <option>TikTok</option>
+                    <option>LinkedIn</option>
+                    <option>YouTube</option>
+                    <option>X</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="social-url">Profile URL</label>
+                  <input id="social-url" name="socialUrl" type="url" placeholder="https://social.example/yourname" required>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="image" hidden>
+                <div class="form-section-heading">
+                  <h3>Your image link</h3>
+                  <p>Use a public link to an image hosted online.</p>
+                </div>
+                <div class="form-field">
+                  <label for="image-url">Public image URL</label>
+                  <input id="image-url" name="imageUrl" type="url" placeholder="https://example.com/photo.jpg" required>
+                  <span class="field-hint">Qreator does not upload or host image files.</span>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="video" hidden>
+                <div class="form-section-heading">
+                  <h3>Your video link</h3>
+                  <p>Paste a public video page people can open.</p>
+                </div>
+                <div class="form-field">
+                  <label for="video-url">Public video URL</label>
+                  <input id="video-url" name="videoUrl" type="url" placeholder="https://video.example/watch/…" required>
+                  <span class="field-hint">Qreator links to your video; it does not upload or host videos.</span>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="text" hidden>
+                <div class="form-section-heading">
+                  <h3>Your message</h3>
+                  <p>Share a note, instructions, or any plain text.</p>
+                </div>
+                <div class="form-field">
+                  <label for="plain-text">Text to share</label>
+                  <textarea id="plain-text" name="plainText" rows="5" placeholder="Write the text you want people to read…" required></textarea>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="email" hidden>
+                <div class="form-section-heading">
+                  <h3>Start an email</h3>
+                  <p>Scanning opens an email addressed to your recipient.</p>
+                </div>
+                <div class="form-field">
+                  <label for="email-address">Email address</label>
+                  <input id="email-address" name="emailAddress" type="email" placeholder="hello@example.com" autocomplete="email" required>
+                </div>
+                <div class="form-field">
+                  <label for="email-subject">Subject <span class="optional-label">Optional</span></label>
+                  <input id="email-subject" name="emailSubject" type="text" placeholder="A quick hello">
+                </div>
+                <div class="form-field">
+                  <label for="email-message">Message <span class="optional-label">Optional</span></label>
+                  <textarea id="email-message" name="emailMessage" rows="3" placeholder="Add a message…"></textarea>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="phone" hidden>
+                <div class="form-section-heading">
+                  <h3>Make a call</h3>
+                  <p>Add the phone number you want people to call.</p>
+                </div>
+                <div class="form-field">
+                  <label for="phone-number">Phone number</label>
+                  <input id="phone-number" name="phoneNumber" type="tel" placeholder="+1 555 123 4567" autocomplete="tel" required>
+                  <span class="field-hint">Include a country code for international callers.</span>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="sms" hidden>
+                <div class="form-section-heading">
+                  <h3>Start a text message</h3>
+                  <p>Add a recipient and an optional message.</p>
+                </div>
+                <div class="form-field">
+                  <label for="sms-number">Recipient’s phone number</label>
+                  <input id="sms-number" name="smsNumber" type="tel" placeholder="+1 555 123 4567" autocomplete="tel" required>
+                </div>
+                <div class="form-field">
+                  <label for="sms-message">Message <span class="optional-label">Optional</span></label>
+                  <textarea id="sms-message" name="smsMessage" rows="3" placeholder="Write a text message…"></textarea>
+                </div>
+              </div>
+
+              <div class="content-fields" data-content-panel="location" hidden>
+                <div class="form-section-heading">
+                  <h3>Your location</h3>
+                  <p>Enter a full address or a place people can search for.</p>
+                </div>
+                <div class="form-field">
+                  <label for="location-address">Address or place</label>
+                  <textarea id="location-address" name="locationAddress" rows="3" placeholder="Street address, city, or place name" required></textarea>
+                  <span class="field-hint">Use a specific address to make the destination easy to find.</span>
+                </div>
+              </div>
+            </form>
+
+            <aside class="content-privacy">
+              <span class="privacy-mark" aria-hidden="true">✳</span>
+              <div>
+                <strong>Your details stay in this browser.</strong>
+                <span>They are not sent to a Qreator server.</span>
+              </div>
+            </aside>
+          </div>
+
+          <div class="step-actions">
+            <button class="button button-outline" type="button" data-step-back>Back</button>
+            <button class="button button-primary" id="content-next" type="button">
+              Continue to design
+            </button>
+          </div>
+        </section>
+
+        <section class="workflow-step" data-step="3" aria-labelledby="design-step-heading" hidden>
+          <div class="step-intro">
+            <div>
+              <span class="step-kicker">STEP 3</span>
+              <h2 id="design-step-heading" tabindex="-1">Make it yours.</h2>
+              <p>Adjust your colours and size, then download a QR code ready to share.</p>
+            </div>
+            <span class="selected-type-summary design-type-summary">
+              <span class="type-icon type-icon-small" id="design-type-icon" aria-hidden="true"></span>
+              <span id="design-type-label">Your QR type</span>
+            </span>
+          </div>
+
+          <div class="design-workspace">
+            <section class="design-preview-panel" aria-labelledby="design-preview-heading">
+              <div class="design-preview-header">
+                <div>
+                  <span class="panel-kicker">DESIGN PREVIEW</span>
+                  <h3 id="design-preview-heading">Your QR code</h3>
+                </div>
+                <span class="preview-type" id="design-preview-type">Choose a type</span>
+              </div>
+              <div class="design-preview-stage">
+                <div class="design-preview-sheet" id="design-preview-sheet">
+                  <div class="qr-empty-state" id="qr-preview-empty">
+                    <svg viewBox="0 0 100 100" fill="none">
+                      <path d="M13 38V19a6 6 0 0 1 6-6h19M62 13h19a6 6 0 0 1 6 6v19M87 62v19a6 6 0 0 1-6 6H62M38 87H19a6 6 0 0 1-6-6V62" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                      <path d="M35 35h30v30H35z" stroke="currentColor" stroke-width="3" stroke-dasharray="4 5"/>
+                      <path d="M50 43v14m-7-7h14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <span class="preview-placeholder-label" id="qr-preview-empty-message">Choose a type and add valid content to create your QR code.</span>
+                  </div>
+                  <div class="qr-preview-wrap" id="qr-preview-wrap" hidden>
+                    <img class="qr-preview-image" id="qr-preview-image" alt="" hidden>
+                  </div>
+                </div>
+              </div>
+              <div class="design-preview-caption">
+                <span class="preview-status-dot" id="preview-status-dot" aria-hidden="true"></span>
+                <div>
+                  <p id="design-preview-status" role="status" aria-live="polite">Waiting for valid content</p>
+                  <span id="design-style-summary">Square dots · Square corners · No frame</span>
+                </div>
+              </div>
+              <p class="preview-stage-note">Colours and an uploaded logo are included in the QR. Dot and corner patterns and frames are not applied yet.</p>
+            </section>
+
+            <aside class="design-controls" aria-labelledby="design-controls-heading">
+              <div class="design-controls-heading">
+                <span class="panel-kicker">APPEARANCE</span>
+                <h3 id="design-controls-heading">Design settings</h3>
+              </div>
+
+              <div class="control-group color-control-group">
+                <div class="color-setting">
+                  <label for="foreground-color">Foreground</label>
+                  <div class="color-input-wrap">
+                    <input id="foreground-color" type="color" value="#101522" aria-label="Foreground colour">
+                    <output id="foreground-value" for="foreground-color">#101522</output>
+                  </div>
+                </div>
+                <div class="color-setting">
+                  <label for="background-color">Background</label>
+                  <div class="color-input-wrap">
+                    <input id="background-color" type="color" value="#ffffff" aria-label="Background colour">
+                    <output id="background-value" for="background-color">#FFFFFF</output>
+                  </div>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="control-label-row">
+                  <label for="qr-size">QR size</label>
+                  <output id="size-value" for="qr-size">256 px</output>
+                </div>
+                <input id="qr-size" class="range-control" type="range" min="128" max="512" step="32" value="256">
+                <div class="range-labels"><span>Small</span><span>Large</span></div>
+              </div>
+
+              <div class="control-group">
+                <label for="error-correction">Error correction</label>
+                <select id="error-correction">
+                  <option value="L">Low · 7%</option>
+                  <option value="M" selected>Medium · 15%</option>
+                  <option value="Q">Quartile · 25%</option>
+                  <option value="H">High · 30%</option>
+                </select>
+                <span class="field-hint">Higher levels can help if a code is partly covered.</span>
+              </div>
+
+              <div class="control-group">
+                <span class="control-label">QR pattern</span>
+                <div class="option-row" role="group" aria-label="QR pattern">
+                  <button class="style-option is-selected" type="button" data-option-group="dotStyle" data-option-value="square" aria-pressed="true" aria-label="Square pattern">
+                    <span class="dot-pattern dot-square" aria-hidden="true"></span>
+                    <span>Square</span>
+                  </button>
+                  <button class="style-option" type="button" data-option-group="dotStyle" data-option-value="rounded" aria-pressed="false" aria-label="Rounded pattern">
+                    <span class="dot-pattern dot-rounded" aria-hidden="true"></span>
+                    <span>Rounded</span>
+                  </button>
+                  <button class="style-option" type="button" data-option-group="dotStyle" data-option-value="dots" aria-pressed="false" aria-label="Circular pattern">
+                    <span class="dot-pattern dot-circles" aria-hidden="true"></span>
+                    <span>Dots</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <span class="control-label">Corner style</span>
+                <div class="option-row" role="group" aria-label="Corner style">
+                  <button class="style-option is-selected" type="button" data-option-group="cornerStyle" data-option-value="square" aria-pressed="true" aria-label="Square corners">
+                    <span class="corner-sample corner-square" aria-hidden="true"></span>
+                    <span>Square</span>
+                  </button>
+                  <button class="style-option" type="button" data-option-group="cornerStyle" data-option-value="rounded" aria-pressed="false" aria-label="Rounded corners">
+                    <span class="corner-sample corner-rounded" aria-hidden="true"></span>
+                    <span>Rounded</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for="frame-style">Frame style</label>
+                <select id="frame-style">
+                  <option value="none">No frame</option>
+                  <option value="outline">Simple outline</option>
+                  <option value="caption">Caption space</option>
+                </select>
+              </div>
+
+              <div class="control-group logo-control-group">
+                <span class="control-label">Logo</span>
+                <label class="logo-upload" for="logo-upload">
+                  <span class="logo-upload-copy">
+                    <strong id="logo-name">Add a logo</strong>
+                    <span>PNG, JPG, or SVG · 2 MB max</span>
+                  </span>
+                  <span class="upload-action">Browse</span>
+                </label>
+                <input class="visually-hidden" id="logo-upload" type="file" accept="image/png,image/jpeg,image/svg+xml,.png,.jpg,.jpeg,.svg">
+                <button class="text-button remove-logo-button" id="remove-logo" type="button" hidden>Remove logo</button>
+                <span class="field-hint logo-feedback" id="logo-feedback" role="status" aria-live="polite">
+                  <span class="logo-loading-indicator" id="logo-loading-indicator" aria-hidden="true" hidden></span>
+                  <span id="logo-feedback-text">Add a small logo to the centre of your QR code.</span>
+                </span>
+                <div class="control-label-row">
+                  <label for="logo-background-shape">Logo background</label>
+                  <select id="logo-background-shape" disabled>
+                    <option value="square">Square</option>
+                    <option value="circle">Circle</option>
+                  </select>
+                </div>
+                <div class="control-label-row logo-size-row">
+                  <label for="logo-size">Logo size</label>
+                  <output id="logo-size-value" for="logo-size">20%</output>
+                </div>
+                <input id="logo-size" class="range-control" type="range" min="10" max="20" step="2" value="20" disabled>
+              </div>
+            </aside>
+          </div>
+
+          <div class="step-actions design-step-actions">
+            <button class="button button-outline" type="button" data-step-back>Back to content</button>
+            <div class="download-action">
+              <span class="download-status" id="download-status" role="status" aria-live="polite"></span>
+              <div class="download-control">
+                <button
+                  class="button button-primary download-button"
+                  id="download-qr"
+                  type="button"
+                  disabled
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  aria-controls="download-format-menu"
+                >
+                  Download QR
+                </button>
+                <div class="download-menu" id="download-format-menu" role="menu" aria-label="Choose a download format" hidden>
+                  <button class="download-format-option" id="download-png" type="button" role="menuitem">PNG image</button>
+                  <button class="download-format-option" id="download-svg" type="button" role="menuitem">SVG vector</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
