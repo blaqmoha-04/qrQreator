@@ -417,7 +417,7 @@ function createQrSvg(qr, size) {
   }
 
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${size}" height="${size}" viewBox="0 0 ${viewSize} ${viewSize}" shape-rendering="crispEdges" role="img" aria-labelledby="qr-title">
-    <title id="qr-title">Qreator QR code</title>
+    <title id="qr-title">qrQreator QR code</title>
     <rect width="${viewSize}" height="${viewSize}" fill="${background}"/>
     <path d="${pathParts.join("")}" fill="${foreground}" stroke="none" shape-rendering="crispEdges"/>
     ${logoMarkup}
@@ -563,7 +563,7 @@ async function downloadQr(format) {
       throw new Error("Choose PNG or SVG to download your QR code.");
     }
 
-    downloadBlob(blob, `qreator-qr-code.${format}`);
+    downloadBlob(blob, `qrQreator-qr-code.${format}`);
     downloadStatus.textContent = `${format.toUpperCase()} download started. Check your downloads.`;
     closeDownloadMenu();
     downloadButton.focus();
